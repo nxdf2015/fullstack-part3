@@ -1,0 +1,42 @@
+
+
+### request all persons -> response list of all persons 
+get http://localhost:3001/api/persons
+
+
+###
+ 
+
+get http://localhost:3001/api/info
+
+
+###
+
+get http://localhost:3001/api/persons/2
+
+
+### 
+
+get http://localhost:3001/api/persons/7
+
+
+### delete person with id = 2 -> list of persons
+
+delete  http://localhost:3001/api/persons/2
+
+
+
+### create a new person -> response : person created
+
+post  http://localhost:3001/api/persons
+Content-Type: application/json
+
+{"name":"xavier","number":123}
+
+### create a new person without name -> reponse error message "name required"
+
+post  http://localhost:3001/api/persons
+Content-Type: application/json
+
+{"number":123}
+

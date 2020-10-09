@@ -25,7 +25,6 @@ get http://localhost:3001/api/persons/7
 delete  http://localhost:3001/api/persons/2
 
 
-
 ### create a new person -> response : person created
 
 post  http://localhost:3001/api/persons

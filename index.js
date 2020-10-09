@@ -1,5 +1,7 @@
 const express = require("express");
 const morgan = require("morgan")
+const cors = require("cors")
+
 
 const { response } = require("express");
 const { request } = require("http");
@@ -33,12 +35,11 @@ morgan.token("body", (req,resp)=> {
 }) 
 
 
-
 app = express();
 
 app.use(express.json());
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms - :body"))
-
+app.use(cors())
 
 /**
  * routes
@@ -71,7 +72,8 @@ app.post("/api/persons", (request, response) => {
   let person = request.body;
   if (person.name && person.number) {
     person = { ...person, id: generateId() };
-    if (persons.find((p) => p.name === person.name)) {
+    
+    if (persons.find((p) => p.name !== person.name)) {
       persons = [...persons, person];
       response.status(404).json(person);
     } else {

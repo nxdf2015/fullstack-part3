@@ -5,11 +5,12 @@ const { response } = require("express");
 const { request } = require("http");
 let { persons } = require("./data");
 
-//configuration 
+
 const url = "/api/persons";
 const port = 3001;
 
-// helper : generate a unique id 
+
+// generate a unique id 
 const generateId = () => {
   let id = undefined;
   let ids = persons.map((p) => p.id);
@@ -20,10 +21,8 @@ const generateId = () => {
   return id;
 };
 
-
-app = express();
-
 // configuration morgan  
+// creation token :body to log body of post request
 morgan.token("body", (req,resp)=> {
     console.log(request.body !== {})
     if (Object.keys(req.body).length ){
@@ -33,8 +32,22 @@ morgan.token("body", (req,resp)=> {
         return ""
 }) 
 
+
+
+app = express();
+
 app.use(express.json());
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms - :body"))
+
+
+/**
+ * routes
+ *  get /api/persons/ 
+ *  get /api/persons/:id
+ *  post /api/persons/ 
+ *  delete/api/persons/:id
+ *  
+ */
 
 app.get("/api/persons/:id", (request, response) => {
   let id = Number(request.params.id);
@@ -45,6 +58,7 @@ app.get("/api/persons/:id", (request, response) => {
     response.status(404).end(`person ${id} not find`);
   }
 });
+
 
 app.get("/api/persons", (request, response) => response.json(persons));
 
@@ -75,6 +89,8 @@ app.delete("/api/persons/:id", (request, response) => {
 
   response.status(404).json(persons);
 });
+
+
 
 
 

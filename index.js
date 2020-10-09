@@ -1,10 +1,15 @@
-const { response } = require("express");
 const express = require("express");
+const morgan = require("morgan")
+
+const { response } = require("express");
 const { request } = require("http");
 let { persons } = require("./data");
 
+//configuration 
 const url = "/api/persons";
 const port = 3001;
+
+// helper : generate a unique id 
 const generateId = () => {
   let id = undefined;
   let ids = persons.map((p) => p.id);
@@ -15,13 +20,24 @@ const generateId = () => {
   return id;
 };
 
+
 app = express();
 
+// configuration morgan  
+morgan.token("body", (req,resp)=> {
+    console.log(request.body !== {})
+    if (Object.keys(req.body).length ){
+        return JSON.stringify(req.body)
+    }
+    else 
+        return ""
+}) 
+
 app.use(express.json());
+app.use(morgan(":method :url :status :res[content-length] - :response-time ms - :body"))
 
 app.get("/api/persons/:id", (request, response) => {
   let id = Number(request.params.id);
-  console.log(request.url, id);
   const person = persons.find((p) => p.id === id);
   if (person) {
     response.status(404).json(person);
@@ -30,10 +46,7 @@ app.get("/api/persons/:id", (request, response) => {
   }
 });
 
-app.get("/api/persons", (request, response) => {
-  console.log(request.url);
-  response.json(persons);
-});
+app.get("/api/persons", (request, response) => response.json(persons));
 
 app.get("/api/info", (request, response) => {
   const message = `phonebook has info for ${persons.length}\n${new Date()}`;

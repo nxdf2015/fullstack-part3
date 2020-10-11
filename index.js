@@ -9,7 +9,7 @@ let { persons } = require("./data");
 
 
 const url = "/api/persons";
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 
 // generate a unique id 
@@ -26,7 +26,6 @@ const generateId = () => {
 // configuration morgan  
 // creation token :body to log body of post request
 morgan.token("body", (req,resp)=> {
-    console.log(request.body !== {})
     if (Object.keys(req.body).length ){
         return JSON.stringify(req.body)
     }
@@ -54,9 +53,9 @@ app.get("/api/persons/:id", (request, response) => {
   let id = Number(request.params.id);
   const person = persons.find((p) => p.id === id);
   if (person) {
-    response.status(404).json(person);
+    response.status(200).json(person);
   } else {
-    response.status(404).end(`person ${id} not find`);
+    response.status(406).end(`person ${id} not find`);
   }
 });
 
@@ -73,15 +72,15 @@ app.post("/api/persons", (request, response) => {
   if (person.name && person.number) {
     person = { ...person, id: generateId() };
     
-    if (persons.find((p) => p.name !== person.name)) {
+    if (persons.every((p) => p.name.toLowerCase() !== person.name.toLowerCase())) {
       persons = [...persons, person];
-      response.status(404).json(person);
+      response.status(200).json(person);
     } else {
-      response.status(404).json({error : "name must be unique"});
+      response.status(200).json({error : "name must be unique"});
     }
   } else {
     const message = `${person.name ? "number" : "name"} is required`;
-    response.status(404);
+    response.status(200).end(message);
   }
 });
 
@@ -89,7 +88,7 @@ app.delete("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id);
   persons = persons.filter((person) => person.id !== id);
 
-  response.status(404).json(persons);
+  response.status(200).json(persons);
 });
 
 

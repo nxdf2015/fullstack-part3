@@ -6,11 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "build:app":"rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && cp  -r build ../../../fullstack-part3/",
-    "deploy":"git push heroku head:master",
-    "deploy:full":"npm run build:app && git add . && git commit -m 'buildui' && npm run deploy",
+    "build:app": "rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && cp  -r build ../../../fullstack-part3/",
+    "deploy": "git push heroku head:master",
+    "deploy:full": "npm run build:app && git add . && git commit -m 'buildui' && npm run deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
-
   },
   "repository": {
     "type": "git",
@@ -25,11 +24,12 @@
   "homepage": "https://github.com/nxdf2015/fullstack-part3#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mongoose": "^5.10.9",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    
     "nodemon": "^2.0.4"
   }
 }

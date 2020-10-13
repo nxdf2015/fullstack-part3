@@ -9,7 +9,7 @@ let { persons } = require("./data");
 
 
 const url = "/api/persons";
-console.log(process.env.PORT)
+
 const port = process.env.PORT || 3001;
 
 

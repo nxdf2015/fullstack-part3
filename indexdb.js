@@ -83,9 +83,9 @@ app.delete("/api/persons/:id",(request,response,next) => {
 app.post("/api/persons", (request, response,next) => {
   let data = request.body;
   if (data !=="" && data.name && data.number){
-    
+    person.find()
     new person(data).save()
-      .then(result => response.status(200).redirect("/api/persons") )
+      .then(result => response.status(200).json(result) )
     
       .catch(error => console.log(error))
   }
@@ -101,7 +101,7 @@ app.put("/api/persons/:id",(request,response,next) => {
   const id = request.params.id
 
   person.findByIdAndUpdate(id, data ,{new : true })
-    .then(result => response.status(204).redirect("/api/persons"))
+    .then(result => response.status(204).json(result) 
     .catch(error => next(error) )
 })
 

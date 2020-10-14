@@ -9,7 +9,7 @@
     "server": "nodemon index.js",
     "serverdb":"nodemon indexdb.js",
     "build:app": "rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && cp  -r build ../../../fullstack-part3/",
-    "deploy": "git push heroku head:master",
+    "deploy": "git push heroku head:qmaster",
     "deploy:full": "npm run build:app && git add . && git commit -m 'buildui' && npm run deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

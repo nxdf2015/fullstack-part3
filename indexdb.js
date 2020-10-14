@@ -82,7 +82,7 @@ app.delete("/api/persons/:id",(request,response,next) => {
 app.post("/api/persons", (request, response,next) => {
   let data = request.body;
   if (data !=="" && data.name && data.number){
-
+    
     new person(data).save()
       .then(result => response.status(200).redirect("/api/persons") )
     

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "start:db": "node indexdb.js",
     "server": "nodemon index.js",
     "server:db":"nodemon indexdb.js",
     "build:app": "rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && cp  -r build ../../../fullstack-part3/",

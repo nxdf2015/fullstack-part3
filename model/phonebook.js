@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-
+require("dotenv").config()
 
 const url_db = process.env.url_phonebook
 console.log(url_db)

@@ -2,8 +2,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 
 const url_db = process.env.url_phonebook
-console.log(process.env)
-console.log(url_db)
+ 
 mongoose.connection.close()
 mongoose.connect(url_db,{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
     .then( () => {

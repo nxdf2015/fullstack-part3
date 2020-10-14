@@ -7,4 +7,4 @@ npm run start
 url  localhost:3001/api/persons
 
 # heroku
-[link to project on heroku](https://powerful-dawn-63344.herokuapp.com/api/persons)
+[link to project on heroku]( https://infinite-ocean-59667.herokuapp.com/)

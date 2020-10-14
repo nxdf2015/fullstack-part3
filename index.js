@@ -1,11 +1,14 @@
 const express = require("express");
 const morgan = require("morgan")
 const cors = require("cors")
+require("dotenv").config()
+
 
 
 const { response } = require("express");
 const { request } = require("http");
 let { persons } = require("./data");
+//const personModel = require("./phonebook.js")
 
 
 const url = "/api/persons";
@@ -93,6 +96,15 @@ app.delete("/api/persons/:id", (request, response) => {
   response.status(200).json(persons);
 });
 
+app.put("/api/persons/:id", (request,response)=> {
+  const id = Number(request.params.id)
+  persons  = persons.map(person => person.id === id ? {...request.body,id} : person)
+  console.log(persons)
+  response.status(200).json(persons)
+})
+
+
+app.use( (request,response) => response.status(404).end("error page"))
 
 
 

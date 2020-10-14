@@ -22,7 +22,7 @@ get http://localhost:3001/api/persons/7
 
 ### delete person with id = 2 -> list of persons
 
-delete  http://localhost:3001/api/persons/2
+delete  http://localhost:3001/api/persons/25f8603a1651d0e4bc8130d5c
 
 
 ### create a new person -> response : person created
@@ -38,4 +38,15 @@ post  http://localhost:3001/api/persons
 Content-Type: application/json
 
 {"number":123}
+
+###
+
+put http://localhost:3001/api/persons/5f86b82a8a5b843410a9941c
+Content-Type: application/json
+
+{"name" : "xavier", "number": 888888}
+
+### unknown page
+
+get http://localhost:3001/api/name 
 

@@ -22,7 +22,7 @@ get http://localhost:3001/api/persons/7
 
 ### delete person with id = 2 -> list of persons
 
-delete  http://localhost:3001/api/persons/25f8603a1651d0e4bc8130d5c
+delete  http://localhost:3001/api/persons/5f880ac361f6472bfcfb25ab
 
 
 ### create a new person -> response : person created
@@ -30,7 +30,7 @@ delete  http://localhost:3001/api/persons/25f8603a1651d0e4bc8130d5c
 post  http://localhost:3001/api/persons
 Content-Type: application/json
 
-{"name":"xavier","number":123}
+{"name":"aa0rra","number":12300000}
 
 ### create a new person without name -> reponse error message "name required"
 

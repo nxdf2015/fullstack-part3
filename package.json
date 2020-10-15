@@ -7,7 +7,7 @@
     "start": "node index.js",
     "startdb": "node indexdb.js",
     "server": "nodemon index.js",
-    "serverdb":"nodemon indexdb.js",
+    "serverdb": "nodemon indexdb.js",
     "build:app": "rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && cp  -r build ../../../fullstack-part3/",
     "deploy": "git push heroku head:qmaster",
     "deploy:full": "npm run build:app && git add . && git commit -m 'buildui' && npm run deploy",
@@ -29,6 +29,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.9",
+    "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

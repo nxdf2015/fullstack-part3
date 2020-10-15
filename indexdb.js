@@ -38,7 +38,7 @@ app.use(cors());
  *  error page
  */
 
-app.get("/api/persons/:id", (request, response, next ) => {
+app.get("/api/persons/:id", (request, response, next) => {
   let id = Number(request.params.id);
   const personFind = person
     .find(id)
@@ -52,25 +52,19 @@ app.get("/api/persons/:id", (request, response, next ) => {
     .catch((error) => next(error));
 });
 
-
-
 app.get("/api/persons", (request, response, next) => {
   person
     .find({})
     .then((result) => {
-      if (result){
-      response.status(200).json(result);
-      }
-      else {
-        response.status(404).end()
+      if (result) {
+        response.status(200).json(result);
+      } else {
+        response.status(404).end();
       }
     })
 
     .catch((error) => next(error));
 });
-
-
-
 
 app.delete("/api/persons/:id", (request, response, next) => {
   const id = request.params.id;
@@ -78,11 +72,10 @@ app.delete("/api/persons/:id", (request, response, next) => {
   person
     .findByIdAndRemove(id)
     .then((result) => {
-      console.log(result)
+      console.log(result);
       if (result) {
-        response.status(200).json(result)
-      }
-      else { 
+        response.status(200).json(result);
+      } else {
         response.status(404).end();
       }
     })
@@ -91,18 +84,16 @@ app.delete("/api/persons/:id", (request, response, next) => {
 
 app.post("/api/persons", (request, response, next) => {
   let data = request.body;
-  
+
   if (data !== "" && data.name && data.number) {
     new person(data)
       .save()
       .then((result) => response.status(200).json(result))
 
       .catch((error) => {
-       
-        next(error );
+        next(error);
       });
   } else {
-    
     next(new Error("error request "));
   }
 });
@@ -110,11 +101,13 @@ app.post("/api/persons", (request, response, next) => {
 app.put("/api/persons/:id", (request, response, next) => {
   let data = request.body;
   const id = request.params.id;
-  console.log
+  console.log;
   person
     .findByIdAndUpdate(id, data, { new: true })
-    .then((result) => { console.log(result)
-      response.status(204).json(result)})
+    .then((result) => {
+      console.log(result);
+      response.status(204).json(result);
+    })
     .catch((error) => next(error));
 });
 

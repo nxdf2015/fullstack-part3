@@ -110,10 +110,11 @@ app.post("/api/persons", (request, response, next) => {
 app.put("/api/persons/:id", (request, response, next) => {
   let data = request.body;
   const id = request.params.id;
-
+  console.log
   person
-    .findByIdAndUpdate(id, data, { new: true , runValidators : true})
-    .then((result) => response.status(204).json(result))
+    .findByIdAndUpdate(id, data, { new: true })
+    .then((result) => { console.log(result)
+      response.status(204).json(result)})
     .catch((error) => next(error));
 });
 

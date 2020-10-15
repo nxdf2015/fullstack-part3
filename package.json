@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint":"eslint .",
     "start": "node index.js",
     "startdb": "node indexdb.js",
     "server": "nodemon index.js",
@@ -33,6 +34,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "eslint": "^7.11.0",
     "nodemon": "^2.0.4"
   }
 }
